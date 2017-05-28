@@ -1,0 +1,417 @@
+{
+	"min_packer_version": "0.8.6",
+	"variables": {
+		"aws_access_key": "",
+		"aws_secret_key": "",
+		"aws_session_token": "",
+		"name": "centos7-hardened",
+		"description": "CentOS 7 Hardened Installation"
+	},
+	"provisioners": [{
+		"type": "shell",
+		"scripts": [
+			"scripts/centos7-hardened-install.sh",
+			"scripts/oscap-pci-dss.sh",
+			"scripts/cleanup.sh",
+			"scripts/zerodisk.sh"
+		],
+		"start_retry_timeout": "15m",
+		"execute_command": "echo 'centos'|sudo -S sh '{{.Path}}'"
+	}],
+	"builders": [{
+		"name": "ap-northeast-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "ap-northeast-1",
+		"source_ami": "ami-571e3c30",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "ap-northeast-2",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "ap-northeast-2",
+		"source_ami": "ami-97cb19f9",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "ap-south-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "ap-south-1",
+		"source_ami": "ami-11f0837e",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "ap-southeast-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "ap-southeast-1",
+		"source_ami": "ami-30318f53",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "ap-southeast-2",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "ap-southeast-2",
+		"source_ami": "ami-24959b47",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "ca-central-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "ca-central-1",
+		"source_ami": "ami-daeb57be",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "eu-central-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "eu-central-1",
+		"source_ami": "ami-7cbc6e13",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "eu-west-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "eu-west-1",
+		"source_ami": "ami-0d063c6b",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "eu-west-2",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "eu-west-2",
+		"source_ami": "ami-c22236a6",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "sa-east-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "sa-east-1",
+		"source_ami": "ami-864f2dea",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "us-east-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "us-east-1",
+		"source_ami": "ami-ae7bfdb8",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "us-east-2",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "us-east-2",
+		"source_ami": "ami-9cbf9bf9",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "us-west-1",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "us-west-1",
+		"source_ami": "ami-7c280d1c",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}, {
+		"name": "us-west-2",
+		"type": "amazon-ebs",
+		"access_key": "{{user `aws_access_key_id`}}",
+		"secret_key": "{{user `aws_secret_key`}}",
+		"token": "{{user `aws_session_token`}}",
+		"region": "us-west-2",
+		"source_ami": "ami-0c2aba6c",
+		"instance_type": "m3.large",
+		"ami_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"launch_block_device_mappings": [{
+			"device_name": "/dev/sda1",
+			"volume_size": 8,
+			"volume_type": "gp2",
+			"delete_on_termination": true
+		}],
+		"force_deregister": true,
+		"force_delete_snapshot": true,
+		"ssh_username": "centos",
+		"ami_name": "{{user `name`}} {{timestamp}}",
+		"ami_description": "{{user `description`}}",
+		"ami_groups": ["all"],
+		"ssh_pty": true
+	}],
+	"post-processors": [{
+		"type": "manifest"
+	}]
+}

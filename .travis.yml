@@ -17,7 +17,7 @@ before_install:
 
 install:
   - curl -o /tmp/packer.zip -L "https://releases.hashicorp.com/packer/1.0.0/packer_1.0.0_linux_amd64.zip"
-  - sudo unzip -d /usr/local/bin /tmp/packer.zip
+  - sudo unzip -o -d /usr/local/bin /tmp/packer.zip
 
 script:
   - make $TARGETS

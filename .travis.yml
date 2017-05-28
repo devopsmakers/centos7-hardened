@@ -5,22 +5,6 @@ os:
   - linux
 
 env:
-  matrix:
-    - TARGETS="ap-northeast-1"
-    - TARGETS="ap-northeast-2"
-    - TARGETS="ap-south-1"
-    - TARGETS="ap-southeast-1"
-    - TARGETS="ap-southeast-2"
-    - TARGETS="ca-central-1"
-    - TARGETS="eu-central-1"
-    - TARGETS="eu-west-1"
-    - TARGETS="eu-west-2"
-    - TARGETS="sa-east-1"
-    - TARGETS="us-east-1"
-    - TARGETS="us-east-2"
-    - TARGETS="us-west-1"
-    - TARGETS="us-west-2"
-
   global:
     - secure: PdFuON9YI5MKZa1li/xIyBdhuHJvxpXnM4/OeffrZclYBbS4PX+Y9ueAYeKAVW/z3lB49Io23I5RU35KglWyHambxXvPwnELcJO5Ew1gMdW/45Rv6ZW9tYiiiSy9XPBJKZXrLWufyzEwvRPwQxoMHjmliIxZB6tqsy5t2eJOxJP7ykw2FUMSqDWZ0tYToIDq4c7YvWDy1xX8MHblhUIMde0cz/nFIvPy81et76rH53KQjlGW6PIcTI+hcy6nZIwPlUDavnWiRAk+aiZOJikQCYeGxyGd6ZY2kkt7iCHCq1A4cBOGS0hMoQyUK0ZucSr1uvJRWaKqrZZPj+Ib7zyiJuhEabzBNesYZ7MvNa9BChqllxj0kZRjmUGu6TR/M0xYfrto8TWnI7LfmuW1EbEYb4iTWr6EtB4TX/bs6TKi8Z/QEu292Vnh4bYwYoYMiH5jr2OafoaWl4mVylnLJyqlLoq5TzazYcfEFNJ5Apoa48s9UDsPEPTY/hE3AptDqPRPN1UfkcPqCozroXcMg8sp7yMw0g0VoL6PAjFzpFsrTixhE6fspfXGZ73ERK5Tu1XoELG9jWiT/z9z8O5LtTOLe0G3sGDSZ6juXav/AHnRBy4gP0GK+7FHsG+yMoixCOGjoUmEpCTqwrU4ifTAFzZKXJyJ+EnT2pw0VKTfroViD4A=
     - secure: nU1JvKJHikjZ3frkQ1jibLs2bqeFxhmbIGIIb4hmWMnQ7M+gwEtxNMc6OtroFJsMMXxY294hLpheoOABTKWMSEuufQwZqdGTYVaLHKJXKgz/vLf+f5hUWi5l89XkjXw6dOpeGVjZWXMD5r+DFyqdgIXFNAvJBPJUivaMCMyni6R08Rn97iW0r61MXb7HUFNJDeJwbksDsOTmosTe4G+lCrFgEvODzxvAv+IOruBfwQiI5ZYhtFUQNQ99kBCWvqenwi8FUc2bdPq+kuVoigqZXlGG886yqhNl1XT3snxDJVrAU9BBf4PnKyReZqOsfBORiu65iiXrQ5VDZnXTlY7+B5vfqsdX3SB+d4ezhovOH8r1SWLGKvnxceNzbAcP+nCbVeUY6JCNaeaA8aaWCcvNbjkkplqjjyxuNXtGdTaguDP5DzqqZlV+qryEMRZTwbHK0mZve/2ksdlJ8pvoyFcLguNb9gIO4oIvyVdA+EUb0YTcyGqUUXqDf3vC1zfrMmMdeEw/G8QkS3jh9AZv8xaa0KhGayww7ntQGzBzX/VjSj49iLhC89VdTW73ycIK6hJhNoZ6/ue0uFijbl7V+oJsha5qUCS0IyxTInC5meb5up6UHquVnRD4ZR0029xj0GjQ8B+D/F/A5meUOdma/vIcILQzlF0J8CAlZxrfrduBU0M=
@@ -30,7 +14,7 @@ install:
   - sudo unzip -o -d /usr/local/bin /tmp/packer.zip
 
 script:
-  - make $TARGETS
+  - make build
   - cat packer-manifest.json
 
 notifications:

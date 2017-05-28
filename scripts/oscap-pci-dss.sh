@@ -164,6 +164,7 @@ cat <<EOF >> /etc/audit/rules.d/audit.rules
 -e 2
 EOF
 
+cat /etc/audit/rules.d/audit.rules
 service auditd restart
 
 # The current scap files reference a http link. RedHat redirects to https and oscap doesn't like that.

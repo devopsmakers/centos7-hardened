@@ -15,4 +15,7 @@ dd if=/dev/zero of=/opt/EMPTY bs=1M
 rm -f /opt/EMPTY
 dd if=/dev/zero of=/usr/EMPTY bs=1M
 rm -f /usr/EMPTY
+
+# Output mounts / disk space
+cat /etc/fstab
 df -h

@@ -164,8 +164,12 @@ cat <<EOF >> /etc/audit/rules.d/audit.rules
 -e 2
 EOF
 
-cat /etc/audit/rules.d/audit.rules
 service auditd restart
+
+# Set logrotate times
+sed -i "s/weekly/daily/g" /etc/logrotate.conf
+sed -i "s/monthly/weekly/g" /etc/logrotate.conf
+sed -i "s/rotate 4/rotate 7/g" /etc/logrotate.conf
 
 # The current scap files reference a http link. RedHat redirects to https and oscap doesn't like that.
 # Replace the links using https / compressed OVAL data

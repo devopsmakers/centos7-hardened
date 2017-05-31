@@ -4,9 +4,6 @@ yum -y install wget
 version=7
 mirror=http://mirror.bytemark.co.uk/centos/
 
-# Print disk layout
-df -h
-
 # Detect primary root drive
 if [ -e /dev/xvda ]; then
   drive=xvda
@@ -320,11 +317,6 @@ cloud_final_modules:
  - final-message
 " > /etc/cloud/cloud.cfg
 
-# Set logrotate times
-sed -i "s/weekly/daily/g" /etc/logrotate.conf
-sed -i "s/monthly/weekly/g" /etc/logrotate.conf
-sed -i "s/rotate 4/rotate 7/g" /etc/logrotate.conf
-
 # Cleanup SSH keys
 rm -f /etc/ssh/*key*
 rm -rf ~/.ssh/
@@ -334,25 +326,6 @@ sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 
 # Run the virtual-guest tuned profile
 echo "virtual-guest" > /etc/tune-profiles/active-profile
-
-# Cleanup UUID / HWADDR / network config
-sed -i '/HOSTNAME/d' /etc/sysconfig/network
-rm /etc/hostname
-echo "" > /etc/resolv.conf
-sed -i -e 's/\(hd0\),0/\1/' -e 's?UUID=[^ ]*?LABEL=/?' -e 's/rhgb quiet//' /boot/grub/menu.lst
-sed -i '/HWADDR/d' etc/sysconfig/network-scripts/ifcfg-e*
-sed -i '/HOSTNAME/d' etc/sysconfig/network-scripts/ifcfg-e*
-touch /etc/udev/rules.d/75-persistent-net-generator.rules
-
-# cleanup
-yum -y clean all
-rpm --rebuilddb
-
-# Shrink / rm logs
-rm -f /root/anaconda-ks.cfg
-rm -f /root/install.log
-rm -f /root/install.log.syslog
-find /var/log -type f -delete
 
 # Let SELinux relabel FS on next boot
 touch /.autorelabel

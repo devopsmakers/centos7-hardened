@@ -1,5 +1,5 @@
 # centos7-hardened
-Configurtion for a Oscap PCI-DSS hardened CentOS 7 AMI built using Packer.
+Configuration for an Oscap PCI-DSS hardened CentOS 7 AMI built using Packer.
 
 # Why
 ## Overview
@@ -23,6 +23,6 @@ OpenLogic Hardened: https://aws.amazon.com/marketplace/pp/B01G7PWQXK
 I wanted to get to grips with building custom OS AMI's in AWS and make it all
 open to the wider tech community for free. It was a great learning exercise and
 a great opportunity to give a secure OS to the public Marketplace that others can
-make use of.s
+make use of.
 
 # How
